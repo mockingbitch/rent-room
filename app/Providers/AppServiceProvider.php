@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $models = [
+            'User',
+            'Role',
+            'Permission',
+            'ModelHasRole'
+        ];
+
+        foreach ($models as $model) {
+            $this->app->bind("App\Repositories\\{$model}\\{$model}RepositoryInterface", "App\Repositories\\{$model}\\{$model}Repository");
+        }
     }
 
     /**
@@ -23,6 +33,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
     }
 }
