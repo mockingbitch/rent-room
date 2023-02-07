@@ -2,20 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 
-class RolePermissionRequest extends FormRequest
+class RolePermissionRequest extends Request
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,7 +14,9 @@ class RolePermissionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id'       => 'sometimes|required|exists:App\Models\User,id',
+            'role_id'       => 'sometimes|required|exists:App\Models\Role,id',
+            'permission_id' => 'sometimes|required|exists:App\Models\Permission,id',
         ];
     }
 }

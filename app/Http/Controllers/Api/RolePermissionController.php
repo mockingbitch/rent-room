@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Repositories\Role\RoleRepositoryInterface as RoleRepository;
@@ -11,12 +13,11 @@ use App\Repositories\Permission\PermissionRepositoryInterface as PermissionRepos
 use App\Repositories\User\UserRepositoryInterface as UserRepository;
 use App\Repositories\ModelHasRole\ModelHasRoleRepositoryInterface as ModelHasRoleRepository;
 use App\Http\Requests\RolePermissionRequest;
-use Illuminate\Http\JsonResponse;
 use App\Constants\Constant;
 use App\Constants\RolePermissionConstant;
 use App\Constants\RoleConstant;
 use App\Constants\PermissionConstant;
-use Illuminate\Http\Response;
+
 
 class RolePermissionController extends Controller
 {
