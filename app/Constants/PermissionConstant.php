@@ -18,21 +18,21 @@ class PermissionConstant
 
 
     const ARRAY_PERMISSIONS = [
-        'read_post'         => 'Read Post',
-        'create_post'       => 'Create Post',
-        'update_post'       => 'Update Post',
-        'delete_post'       => 'Delete Post',
-        'read_user'         => 'Read User',
-        'create_user'       => 'Create User',
-        'update_user'       => 'Update User',
-        'delete_user'       => 'Delete User',
-        'read_role'         => 'Read Role',
-        'update_role'       => 'Update Role',
-        'create_role'       => 'Create Role',
-        'delete_role'       => 'Delete Role',
-        'read_permission'   => 'Read Permission',
-        'create_permission' => 'Create Permission',
-        'update_permission' => 'Update Permission',
-        'delete_permission' => 'Delete Permisison'
+        'read_post'         => 'Read Post',     //1
+        'create_post'       => 'Create Post',   //2
+        'update_post'       => 'Update Post',   //3
+        'delete_post'       => 'Delete Post',   //4
+        'read_user'         => 'Read User',     //5
+        'create_user'       => 'Create User',   //6
+        'update_user'       => 'Update User',   //7
+        'delete_user'       => 'Delete User',   //8
+        'read_role'         => 'Read Role',     //9
+        'update_role'       => 'Update Role',   //10
+        'create_role'       => 'Create Role',   //11
+        'delete_role'       => 'Delete Role',   //12
+        'read_permission'   => 'Read Permission',   //13
+        'create_permission' => 'Create Permission', //14
+        'update_permission' => 'Update Permission', //15
+        'delete_permission' => 'Delete Permisison'  //16
     ];
 }

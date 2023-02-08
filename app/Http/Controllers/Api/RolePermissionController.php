@@ -12,7 +12,8 @@ use App\Repositories\Role\RoleRepositoryInterface as RoleRepository;
 use App\Repositories\Permission\PermissionRepositoryInterface as PermissionRepository;
 use App\Repositories\User\UserRepositoryInterface as UserRepository;
 use App\Repositories\ModelHasRole\ModelHasRoleRepositoryInterface as ModelHasRoleRepository;
-use App\Http\Requests\RolePermissionRequest;
+use App\Http\Requests\AssignRoleToPermissionRequest;
+use App\Http\Requests\AssignRoleToUserRequest;
 use App\Constants\Constant;
 use App\Constants\RolePermissionConstant;
 use App\Constants\RoleConstant;
@@ -67,15 +68,13 @@ class RolePermissionController extends Controller
      *
      * @return JsonResponse
      */
-    public function chownPermissionToRole(RolePermissionRequest $request) : JsonResponse
+    public function chownPermissionToRole(AssignRoleToPermissionRequest $request) : JsonResponse
     {
         try {
             $role           = Role::find($request->role_id);
             $permissions    = Permission::find($request->permission_id);
 
-            foreach ($permissions as $permission) :
-                $permission->assignRole($role);
-            endforeach;
+            $role->syncPermissions($permissions);
 
             return response()->json([
                 'message'   => RolePermissionConstant::MSG_CREATED,
@@ -91,7 +90,7 @@ class RolePermissionController extends Controller
      *
      * @return JsonResponse
      */
-    public function chownRoleToUser(RolePermissionRequest $request)
+    public function chownRoleToUser(AssignRoleToUserRequest $request)
     {
         try {
             $role = Role::find($request->role_id);
