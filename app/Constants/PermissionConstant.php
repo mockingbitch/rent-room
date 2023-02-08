@@ -33,6 +33,8 @@ class PermissionConstant
         'read_permission'   => 'Read Permission',   //13
         'create_permission' => 'Create Permission', //14
         'update_permission' => 'Update Permission', //15
-        'delete_permission' => 'Delete Permisison'  //16
+        'delete_permission' => 'Delete Permisison', //16
+        'chown_permission'  => 'Chown Permission',  //17
+        'chown_role'        => 'Chown Role',        //18
     ];
 }
