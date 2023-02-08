@@ -15,4 +15,5 @@ class Constant
     const MSG_ERROR             = 'Error';
     const MSG_EXCEPTION         = 'Exception';
     const MSG_INVALID_REQUEST   = 'Invalid data send';
+    const MSG_SETUP_SUCCESS     = 'Setup successful';
 }
