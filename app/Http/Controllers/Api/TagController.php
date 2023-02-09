@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TagRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
@@ -27,8 +28,8 @@ class TagController extends Controller
     public function getTag(Request $request) : JsonResponse
     {
         try {
-            if ($request->tagid || null !== $request->tagid) :
-                if (! $tag = $this->tagRepository->find($request->tagid)) :
+            if ($request->id || null !== $request->id) :
+                if (! $tag = $this->tagRepository->find($request->id)) :
                     return $this->exceptionResponse(TagConstant::MSG_NOT_FOUND);
                 endif;
 
@@ -40,7 +41,7 @@ class TagController extends Controller
             endif;
 
             return response()->json([
-                'categories'    => $this->tagRepository->getAll(),
+                'tags'    => $this->tagRepository->getAll(),
                 'message'       => Constant::MSG_OK,
                 'error'         => Constant::ERR_CODE_OK
             ], Response::HTTP_OK);
@@ -85,7 +86,7 @@ class TagController extends Controller
     public function deleteTag(Request $request) : JsonResponse
     {
         if (! $this->tagRepository->delete($request->id)) :
-            return $this->errorResponse(Constant::MSG_UPDATE_FAILED);
+            return $this->errorResponse(Constant::MSG_DELETE_FAILED);
         endif;
 
         return $this->successResponse();

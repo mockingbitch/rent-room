@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
 class CategoryRequest extends Request
 {
@@ -14,8 +15,8 @@ class CategoryRequest extends Request
     public function rules()
     {
         return [
-            'name_vi'           => 'required|max:30|unique:categories,name_vi'.$this->category->id,
-            'name_en'           => 'required|max:30|unique:categories,name_en'.$this->category->id,
+            'name_vi'           => 'required|max:30|unique:categories,name_vi',
+            'name_en'           => 'required|max:30|unique:categories,name_en',
             'description_vi'    => 'max:255',
             'description_en'    => 'max:255'
         ];

@@ -14,8 +14,8 @@ class AssignRoleToPermissionRequest extends Request
     public function rules()
     {
         return [
-            'role_id'       => 'required|exists:App\Models\Role,id',
-            'permission_id.*'  => 'required|exists:App\Models\Permission,id',
+            'role_id'           => 'required|exists:App\Models\Role,id',
+            'permission_id.*'   => 'required|exists:App\Models\Permission,id',
         ];
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use App\Repositories\Category\CategoryRepository;
 use App\Constants\CategoryConstant;
 use App\Constants\Constant;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -27,8 +28,8 @@ class CategoryController extends Controller
     public function getCategory(Request $request) : JsonResponse
     {
         try {
-            if ($request->categoryid || null !== $request->categoryid) :
-                if (! $category = $this->categoryRepository->find($request->categoryid)) :
+            if ($request->id || null !== $request->id) :
+                if (! $category = $this->categoryRepository->find($request->id)) :
                     return $this->exceptionResponse(CategoryConstant::MSG_NOT_FOUND);
                 endif;
 
@@ -85,7 +86,7 @@ class CategoryController extends Controller
     public function deleteCategory(Request $request) : JsonResponse
     {
         if (! $this->categoryRepository->delete($request->id)) :
-            return $this->errorResponse(Constant::MSG_UPDATE_FAILED);
+            return $this->errorResponse(Constant::MSG_DELETE_FAILED);
         endif;
 
         return $this->successResponse();

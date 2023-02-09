@@ -11,32 +11,57 @@ use App\Models\User;
 use App\Constants\Constant;
 use App\Constants\RoleConstant;
 use App\Constants\PermissionConstant;
+use App\Constants\AddressSQLRaw;
+use DB;
 
 class SetupController extends Controller
 {
-    /**
-     * @return JsonResponse
-     */
-    public function autoInsertPermission() : JsonResponse
+
+    public function setUp()
     {
         try {
-            $permissions    = [];
-            $role           = Role::create([RoleConstant::COLUMN_NAME => RoleConstant::ROLE_SUPER_ADMIN]);
-            $user           = User::find(1);
+            \Artisan::call('migrate');
+            \Artisan::call('db:seed --class=SqlFileSeeder');
+        } catch (\Exception $e) {
+            echo 'Error migrate db';
+        }
 
-            foreach (PermissionConstant::ARRAY_PERMISSIONS as $permission) :
+        try {
+            $role = Role::create([RoleConstant::COLUMN_NAME => RoleConstant::ROLE_SUPER_ADMIN]);
+        } catch (\Exception $e) {
+            echo 'Error create role. ';
+        }
+
+        try {
+            $user = User::create([
+                'name' => env('USER_NAME'),
+                'email' => env('USER_EMAIL'),
+                'password' => bcrypt(env('USER_PASSWORD'))
+            ]);
+        } catch (\Exception $e) {
+            echo 'Error create user. ';
+        }
+
+        try {
+            $permissions = [];
+
+            foreach (PermissionConstant::PERMISSIONS as $permission) :
                 $permissions[] = Permission::create([PermissionConstant::COLUMN_NAME => $permission]);
             endforeach;
+        } catch (\Exception $e) {
+            echo 'Error create permissions. ';
+        }
 
+        try {
             $role->syncPermissions($permissions);
             $user->syncRoles($role);
-
-            return response()->json([
-                'message'       => Constant::MSG_SETUP_SUCCESS,
-                'errorCode'     => Constant::ERR_CODE_OK
-            ], Response::HTTP_CREATED);
-        } catch (\Throwable ) {
-            return $this->catchErrorResponse();
+        } catch (\Exception $e) {
+            echo 'Error sync role & permissions. ';
         }
+
+        return response()->json([
+            'message'       => Constant::MSG_SETUP_SUCCESS,
+            'errorCode'     => Constant::ERR_CODE_OK
+        ], Response::HTTP_CREATED);
     }
 }

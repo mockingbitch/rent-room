@@ -2,20 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 
-class TagRequest extends FormRequest
+class TagRequest extends Request
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,7 +14,10 @@ class TagRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name_vi'           => 'required|max:30|unique:tags,name_vi',
+            'name_en'           => 'required|max:30|unique:tags,name_en',
+            'description_vi'    => 'max:255',
+            'description_en'    => 'max:255'
         ];
     }
 }
