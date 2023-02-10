@@ -55,17 +55,31 @@ class UserController extends Controller
         }
     }
 
-    public function updateAddress(Request $request)
+    public function updateAddress(UserRequest $request)
     {
         $user = $this->userRepository->find($request->user_id);
         $update = $this->userRepository->updateAddress($user->id, $request->ward_code);
         dd($update);
     }
 
-    public function getUserAddress(Request $request)
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function getUserAddress(Request $request) : JsonResponse
     {
-        $user = $this->userRepository->find($request->id);
+        try {
+            $user = $this->userRepository->find($request->id);
 
-        return response()->json(['address' => getFullAddressVN($user)], 200);
+            return response()->json([
+                'address_vi'    => getFullAddressVN($user),
+                'address_en'    => getFullAddressEN($user),
+                'message'       => Constant::MSG_OK,
+                'error'         => Constant::ERR_CODE_OK
+            ], Response::HTTP_OK);
+        } catch (\Exception ) {
+            return $this->exceptionResponse(Constant::MSG_ADDRESS_NOT_FOUND);
+        }
     }
 }

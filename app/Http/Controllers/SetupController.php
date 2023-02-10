@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
-use App\Constants\Coanstant;
+use App\Constants\Constant;
 use App\Constants\RoleConstant;
 use App\Constants\PermissionConstant;
 use App\Constants\AddressSQLRaw;
@@ -16,6 +16,7 @@ use DB;
 
 class SetupController extends Controller
 {
+
     public function setUp()
     {
         try {
@@ -26,7 +27,9 @@ class SetupController extends Controller
         }
 
         try {
-            $role = Role::create([RoleConstant::COLUMN_NAME => RoleConstant::ROLE_SUPER_ADMIN]);
+            $role               = Role::create([RoleConstant::COLUMN_NAME => RoleConstant::ROLE_SUPER_ADMIN]);
+            $roleHouseHolder    = Role::create([RoleConstant::COLUMN_NAME => RoleConstant::ROLE_HOUSE_HOLDER]);
+            $roleGuest          = Role::create([RoleConstant::COLUMN_NAME => RoleConstant::ROLE_GUEST]);
         } catch (\Exception $e) {
             echo 'Error create role. ';
         }
