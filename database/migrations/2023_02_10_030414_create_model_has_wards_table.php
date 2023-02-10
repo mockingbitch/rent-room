@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('address_tables', function (Blueprint $table) {
+        Schema::create('model_has_wards', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('model_id');
+            $table->string('model_type');
+            $table->string('ward_code');
+            $table->foreign('ward_code')->references('code')->on('wards');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address_tables');
+        Schema::dropIfExists('model_has_wards');
     }
 };

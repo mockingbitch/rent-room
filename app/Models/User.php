@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -64,5 +65,11 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+
+    public function address() : HasOne
+    {
+        return $this->hasOne(\App\Models\ModelEntity\ModelHasWard::class, 'model_id')->where('model_type', '=', 'App\Models\User');
     }
 }

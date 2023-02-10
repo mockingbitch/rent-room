@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
             'User',
             'Role',
             'Permission',
-            'ModelHasRole'
+            'ModelHasRole',
         ];
 
         foreach ($models as $model) {

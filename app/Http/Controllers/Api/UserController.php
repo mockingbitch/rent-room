@@ -54,4 +54,18 @@ class UserController extends Controller
             return $this->catchErrorResponse();
         }
     }
+
+    public function updateAddress(Request $request)
+    {
+        $user = $this->userRepository->find($request->user_id);
+        $update = $this->userRepository->updateAddress($user->id, $request->ward_code);
+        dd($update);
+    }
+
+    public function getUserAddress(Request $request)
+    {
+        $user = $this->userRepository->find($request->id);
+
+        return response()->json(['address' => getFullAddressVN($user)], 200);
+    }
 }

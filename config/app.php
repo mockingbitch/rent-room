@@ -197,6 +197,7 @@ return [
 
         // ADDED
         Spatie\Permission\PermissionServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
     ],
 
     /*

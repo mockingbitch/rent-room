@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\RolePermissionController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\TagController;
+use App\Http\Controllers\Api\UserController;
 
 
 /*
@@ -72,4 +73,9 @@ Route::controller(TagController::class)->group(function () {
     Route::post('tag', 'createTag')->middleware('permission:' . PermissionConstant::PERMISSIONS['create_tag']);
     Route::put('tag', 'updateTag')->middleware('permission:'. PermissionConstant::PERMISSIONS['update_tag']);
     Route::delete('tag', 'deleteTag')->middleware('permission:'. PermissionConstant::PERMISSIONS['delete_tag']);
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::post('user', 'updateAddress');
+    Route::get('address', 'getUserAddress');
 });

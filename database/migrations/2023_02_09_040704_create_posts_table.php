@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('content');
             $table->string('image');
             $table->string('slug')->nullable();
-            $table->unsignedBigInteger('ward_id');
             $table->string('price_min');
             $table->string('price_max');
             $table->timestamps();

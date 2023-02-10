@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
-use App\Constants\Constant;
+use App\Constants\Coanstant;
 use App\Constants\RoleConstant;
 use App\Constants\PermissionConstant;
 use App\Constants\AddressSQLRaw;
@@ -16,12 +16,11 @@ use DB;
 
 class SetupController extends Controller
 {
-
     public function setUp()
     {
         try {
-            \Artisan::call('migrate');
             \Artisan::call('db:seed --class=SqlFileSeeder');
+            \Artisan::call('migrate');
         } catch (\Exception $e) {
             echo 'Error migrate db';
         }
