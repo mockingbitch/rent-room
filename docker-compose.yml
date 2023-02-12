@@ -17,6 +17,7 @@ services:
       - .:/var/www/html
       - ./docker/logs/nginx_log:/var/log/nginx
       - ./docker/config/nginx/rentroom/app.conf:/etc/nginx/conf.d/rentroom.conf
+      - ./docker/config/nginx/adminer/app.conf:/etc/nginx/conf.d/adminer.conf
     links:
       - php
       - mysql
@@ -48,6 +49,16 @@ services:
       - ./docker/mysql:/docker-entrypoint-initdb.d
     networks:
       - app-network
+  adminer_container:
+    image: adminer:latest
+    environment:
+        ADMINER_DEFAULT_SERVER: mysql
+        ADMINER_DESIGN: galkaev
+        ADMINER_DEFAULT_DB_NAME: rentroom
+    ports:
+      - 8080:8080
+    links:
+      - mysql
 networks:
   app-network:
     driver: bridge

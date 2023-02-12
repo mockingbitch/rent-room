@@ -6,15 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ModelHasRole extends Model
+class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'model_has_roles';
+    /**
+     * @var string
+     */
+    protected $table = 'categories';
 
+    /**
+     * @var array
+     */
     protected $fillable = [
-        'role_id',
-        'model_type',
-        'model_id'
+        'name_vi',
+        'name_en',
+        'description_vi',
+        'description_en',
     ];
 }

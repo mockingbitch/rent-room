@@ -17,7 +17,7 @@ class PermissionConstant
     const MSG_UPDATED_FAILED    = 'Permission updated failed';
 
 
-    const ARRAY_PERMISSIONS = [
+    const PERMISSIONS = [
         'read_post'         => 'Read Post',     //1
         'create_post'       => 'Create Post',   //2
         'update_post'       => 'Update Post',   //3
@@ -36,5 +36,14 @@ class PermissionConstant
         'delete_permission' => 'Delete Permisison', //16
         'chown_permission'  => 'Chown Permission',  //17
         'chown_role'        => 'Chown Role',        //18
+        'get_category'      => 'Get Category',      //19
+        'create_category'   => 'Create Category',   //20
+        'update_category'   => 'Update Category',   //21
+        'delete_category'   => 'Delete Category',   //22
+        'get_tag'           => 'Get Tag',           //23
+        'create_tag'        => 'Create Tag',        //24
+        'update_tag'        => 'Update Tag',        //25
+        'delete_tag'        => 'Delete Tag',        //26
+
     ];
 }
