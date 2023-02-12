@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use App\Repositories\User\UserRepository;
 use App\Constants\UserConstant;
 use App\Constants\Constant;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -57,7 +58,7 @@ class UserController extends Controller
 
     public function updateAddress(UserRequest $request)
     {
-        $user = $this->userRepository->find($request->user_id);
+        $user = auth()->user();
         $update = $this->userRepository->updateAddress($user->id, $request->ward_code);
         dd($update);
     }

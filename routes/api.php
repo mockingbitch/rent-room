@@ -76,6 +76,6 @@ Route::controller(TagController::class)->group(function () {
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::post('user', 'updateAddress');
-    Route::get('address', 'getUserAddress');
+    Route::post('user/address', 'updateAddress');
+    Route::get('/user/address', 'getUserAddress');
 });
