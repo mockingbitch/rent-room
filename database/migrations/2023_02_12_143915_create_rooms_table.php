@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->text('content');
             $table->float('price');
+            $table->unsignedBigInteger('house_id');
+            $table->foreign('house_id')->references('id')->on('houses');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

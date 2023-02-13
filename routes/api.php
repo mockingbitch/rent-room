@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\RolePermissionController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\HouseController;
 
 
 /*
@@ -78,4 +79,10 @@ Route::controller(TagController::class)->group(function () {
 Route::controller(UserController::class)->group(function () {
     Route::post('user/address', 'updateAddress');
     Route::get('/user/address', 'getUserAddress');
+});
+
+Route::controller(HouseController::class)->group(function () {
+    Route::get('house', 'getHouse');
+    Route::post('house', 'createHouse');
+    Route::put('house', 'updateHouse');
 });

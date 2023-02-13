@@ -4,16 +4,15 @@ namespace App\Models\ModelEntity;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ModelHasPermission extends Model
+class ModelHasTag extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
-    protected $table = 'model_has_permissions';
+    protected $table = 'model_has_tags';
 
     protected $fillable = [
-        'permission_id',
+        'tag_id',
         'model_type',
         'model_id'
     ];
