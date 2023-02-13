@@ -4,6 +4,7 @@ namespace App\Models\ModelEntity;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ModelHasCategory extends Model
 {
@@ -16,4 +17,12 @@ class ModelHasCategory extends Model
         'model_type',
         'model_id'
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function category() : BelongsTo
+    {
+        return $this->belongsTo(\App\Models\Category::class, 'category_id', 'id');
+    }
 }
